@@ -1,0 +1,9 @@
+body {
+    min-height: 100vh;
+}
+
+.quiz-content {
+    background-color: blueviolet;
+    width: 600px;
+    height: 400px;
+}
