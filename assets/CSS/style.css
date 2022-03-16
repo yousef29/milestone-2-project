@@ -10,3 +10,26 @@ body {
     position: relative;
     margin: auto;
 }
+
+.multiple-choice {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+}
+
+.answer-button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+h1, p {
+    text-align: center;
+}
+
+li {
+    padding: 1em;
+    list-style: none;
+    width: 33%;
+}
