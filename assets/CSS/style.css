@@ -6,4 +6,7 @@ body {
     background-color: blueviolet;
     width: 600px;
     height: 400px;
+    border-radius: 1.5rem;
+    position: relative;
+    margin: auto;
 }
