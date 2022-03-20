@@ -21,9 +21,21 @@ function positionAnswer(trivia){
             <li> ${index + 1}. <span>${option}</span> </li>
         `).join('')}
     `;
+
+    yourAnswer();
 }
 
-
+function yourAnswer(){
+    multipleChoice.querySelectorAll('li').forEach(function(option){
+        option.addEventListener('click', function(){
+            if(multipleChoice.querySelector('.selected')){
+                let yourChoice = multipleChoice.querySelector('.selected');
+                yourChoice.classList.remove('.selected');
+            }
+            option.classList.add('.selected');
+        });
+    });
+}
 
 /*
 function inputTrivia(trivia) {
