@@ -76,6 +76,15 @@ I have tested the responsiveness of the website using Chrome Dev Tools. Everythi
 
 Sometimes the questions can repeat themselves within the same game. I believe this may be an issue with the api as I have not been able to find the cause within my code.
 
+#### Improvements
+
+I had initially planned to used the Astronomy Picture of the Day Api within the project. This would be accessed after getting a perfect score on the quiz as a reward. As this
+the quiz is based around science trivia it would have fit thematically. Due to time consraints I was not able to do this but it is something that could be included in future developments of the site.
+
+There is currently only one difficulty level although the api provides three. Allowing the user to change the difficulty could be a future improvement made to the site.
+
+A further improvement could be adding a social media factor to the website. For example it could be linked to your Facebook profile and you could challenge friends to see who gets the best score.
+
 ### Version Control
 
 #### Git & GitHub
@@ -95,3 +104,10 @@ I deployed the website on GitHub pages using the following steps:
    2. Select "Pages" from the left hand menu.
    3. Select the branch and folder then save.
    4. The website is now running on GitHub pages.
+
+### Sources
+1. (https://www.youtube.com/watch?v=SgJ_femmsfg)
+2. (https://www.w3schools.com/)
+3. (https://www.youtube.com/watch?v=-cX5jnQgqSM&t=767s)
+4. (https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+5. (https://www.youtube.com/watch?v=3aKOQn2NPFs)
