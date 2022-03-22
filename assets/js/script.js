@@ -9,15 +9,14 @@ const _submitBtn = document.getElementById('submit');
 const _playAgain = document.getElementById('play-again');
 const _result = document.getElementById('result');
 
-let correctAnswer = ""
-let yourScore = 0
+let correctAnswer = "", correctScore = 0 , askedCount = 0, totalQuestion =10;
 
 async function sendApiRequest(){
-    let apiUrl = 'https://opentdb.com/api.php?amount=1&category=17&type=multiple';
-    let response = await fetch(`${apiUrl}`);
-    trivia = await response.json();
-    positionAnswer(trivia.results[0]);
-    inputQuestion(trivia);
+    const APIUrl = 'https://opentdb.com/api.php?amount=1&category=17&difficulty=easy&type=multiple';
+    const result = await fetch(`${APIUrl}`);
+    const data = await result.json();
+    _result.innerHTML = "";
+    positionAnswer(data.results[0]);
 }
 
 //event listeners
