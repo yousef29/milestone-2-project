@@ -1,5 +1,3 @@
-window.onload = sendApiRequest
-
 //getting elements and saving them as 'private' variables by prepending underscore
 const _question = document.getElementById('question');
 const _multipleChoice = document.querySelector('.multiple-choice');
@@ -31,65 +29,57 @@ document.addEventListener('DOMContentLoaded', function(){
     _score.textContent = correctScore;
 });
 
-function positionAnswer(trivia){
-    let correctAnswer = trivia.correct_answer;
-    let incorrectAnswer = trivia.incorrect_answers;
-    let assignAnswer = incorrectAnswer;
-    assignAnswer.splice(Math.floor(Math.random() * (incorrectAnswer.length + 1)), 0, correctAnswer);
-
-    multipleChoice.innerHTML = `
-        ${assignAnswer.map((option, index) => `
-            <li> ${index + 1}. <span>${option}</span> </li>
+function positionAnswer(data){
+    _submitBtn.disabled = false;
+    correctAnswer = data.correct_answer;
+    let incorrectAnswer = data.incorrect_answers;
+    let multipleChoice = incorrectAnswer;
+    multipleChoice.splice(Math.floor(Math.random() * (incorrectAnswer.length + 1)), 0, correctAnswer);
+    
+    _question.innerHTML = `${data.question} <br> <span class="category"> ${data.category} </span>`
+    _multipleChoice.innerHTML = `
+        ${multipleChoice.map((option, index) =>`
+            <li> ${index + 1}. <span> ${option} </span> </li>
         `).join('')}
     `;
-    console.log(correctAnswer);
-    
-    checkClicks();
     yourAnswer();
 }
 
 function yourAnswer(){
-    multipleChoice.querySelectorAll('li').forEach(function(option){
-        option.addEventListener('click', function(){
-            if(multipleChoice.querySelector('.selected')){
-                let yourChoice = multipleChoice.querySelector('.selected');
+    _multipleChoice.querySelectorAll('li').forEach((option) => {
+        option.addEventListener('click', () => {
+            if(_multipleChoice.querySelector('.selected')){
+                const yourChoice = _multipleChoice.querySelector('.selected');
                 yourChoice.classList.remove('selected');
             }
             option.classList.add('selected');
-        });      
+        });
     });
 }
 
 
 
 function submitAnswer(){
-    submitBtn.disabled = true;
-    if(multipleChoice.querySelector('.selected')){
-        let chosenAnswer = multipleChoice.querySelector('.selected span').textContent;
-        console.log(chosenAnswer);
+    _submitBtn.disabled = true;
+    if(_multipleChoice.querySelector('.selected')){
+        let chosenAnswer = _multipleChoice.querySelector('.selected span').textContent;
         if(chosenAnswer.trim() == htmlDecode(correctAnswer)){
-            yourScore++;
-            response.innerHTML = `<p> Correct! Well done </p>`;
+            correctScore++;
+            console.log(correctScore);
+            _result.innerHTML = `<p> Correct Answer! </p>`
         } else {
-            response.innerHTML = `<p> Oops incorrect! Correct answer:${correctAnswer} </p>`;
+            _result.innerHTML = `<p> Incorrect Answer! </p> <p><small><b>Correct Answer: </b> ${correctAnswer}</small></p>`
         }
+        checkCount();
     }
 }
 
-function htmlDecode(input){
-    let parser = new DOMParser().parseFromString(input, "text/html")
-    return parser.documentElement.textContent;
+function htmlDecode(textString){
+    let doc = new DOMParser().parseFromString(textString, "text/html");
+    return doc.documentElement.textContent;
 }
 
 
 
-/*
-function inputTrivia(trivia) {
-    document.getElementById("question").innerHTML = trivia.results[0].question
-    document.getElementById("answer1").innerHTML = trivia.results[0].correct_answer
-    document.getElementById("answer2").innerHTML = trivia.results[0].incorrect_answers[0]
-    document.getElementById("answer3").innerHTML = trivia.results[0].incorrect_answers[1]
-    document.getElementById("answer4").innerHTML = trivia.results[0].incorrect_answers[2]
-}
-*/
+
  
