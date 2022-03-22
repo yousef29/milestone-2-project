@@ -19,14 +19,17 @@ async function sendApiRequest(){
     positionAnswer(data.results[0]);
 }
 
-//event listeners
-function checkClicks(){
-    submitBtn.addEventListener('click', submitAnswer);
+//listening for events and calling api
+function eventListeners(){
+    _submitBtn.addEventListener('click', submitAnswer);
 }
 
-function inputQuestion(trivia){
-    document.getElementById("question").innerHTML = trivia.results[0].question;
-}
+document.addEventListener('DOMContentLoaded', function(){
+    sendApiRequest();
+    eventListeners();
+    _totalQuestions.textContent = totalQuestion;
+    _score.textContent = correctScore;
+});
 
 function positionAnswer(trivia){
     let correctAnswer = trivia.correct_answer;
