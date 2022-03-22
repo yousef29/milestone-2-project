@@ -1,3 +1,5 @@
+
+
 //getting elements and saving them as 'private' variables by prepending underscore
 const _question = document.getElementById('question');
 const _multipleChoice = document.querySelector('.multiple-choice');
@@ -7,7 +9,7 @@ const _submitBtn = document.getElementById('submit');
 const _playAgain = document.getElementById('play-again');
 const _result = document.getElementById('result');
 
-let correctAnswer = "", correctScore = 0 , askedCount = 0, totalQuestion =10;
+let correctAnswer = '', correctScore = 0 , askedCount = 0, totalQuestion = 10;
 
 async function sendApiRequest(){
     const APIUrl = 'https://opentdb.com/api.php?amount=1&category=17&difficulty=easy&type=multiple';
@@ -17,7 +19,8 @@ async function sendApiRequest(){
     positionAnswer(data.results[0]);
 }
 
-//listening for events and calling api
+//listening for events and calling
+
 function eventListeners(){
     _submitBtn.addEventListener('click', submitAnswer);
 }
@@ -28,6 +31,8 @@ document.addEventListener('DOMContentLoaded', function(){
     _totalQuestions.textContent = totalQuestion;
     _score.textContent = correctScore;
 });
+
+
 
 function positionAnswer(data){
     _submitBtn.disabled = false;
@@ -57,8 +62,6 @@ function yourAnswer(){
     });
 }
 
-
-
 function submitAnswer(){
     _submitBtn.disabled = true;
     if(_multipleChoice.querySelector('.selected')){
@@ -79,7 +82,29 @@ function htmlDecode(textString){
     return doc.documentElement.textContent;
 }
 
+function checkCount(){
+    askedCount++;
+    setCount+1;
+    setCount();
+    if(askedCount == totalQuestion){
+        setTimeout(() =>{
+            console.log("");
+        }, 5000);
+    } else {
+        setTimeout(() => {
+            sendApiRequest();
+        }, 600);
+    }
+    finalScore();
+}
 
+function setCount(){
+    _totalQuestions.textContent = totalQuestion;
+    _score.textContent = correctScore;
+}
 
-
- 
+function finalScore(){
+    if(askedCount == totalQuestion){
+        _result.innerHTML = `<p> Well done you scored: ${correctScore}</p>`;
+    }
+} 
