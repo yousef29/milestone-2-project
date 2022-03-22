@@ -41,7 +41,7 @@ function positionAnswer(data){
     let multipleChoice = incorrectAnswer;
     multipleChoice.splice(Math.floor(Math.random() * (incorrectAnswer.length + 1)), 0, correctAnswer);
     
-    _question.innerHTML = `${data.question} <br> <span class="category"> ${data.category} </span>`
+    _question.innerHTML = `${data.question}`
     _multipleChoice.innerHTML = `
         ${multipleChoice.map((option, index) =>`
             <li> ${index + 1}. <span> ${option} </span> </li>
