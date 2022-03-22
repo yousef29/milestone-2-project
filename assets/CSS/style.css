@@ -22,7 +22,7 @@
 }
 
 body{
-    font-family: 'Poppins' sans-serif;
+    font-family: 'Poppins', sans-serif;
     min-height: 100vh;
     color: var(--dark-color);
     background-color: var(--grey-color);
@@ -65,7 +65,7 @@ body{
     font-weight: 600;
     margin: .7rem 0;
     padding: .4rem 1.2rem;
-    cursor: poiner;
+    cursor: pointer;
     border: 3px solid var(--space-cadet-color);
     background-color: var(--space-cadet-color);
     color: var(--light-color);
