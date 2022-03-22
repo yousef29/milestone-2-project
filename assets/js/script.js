@@ -1,12 +1,9 @@
-
-
 //getting elements and saving them as 'private' variables by prepending underscore
 const _question = document.getElementById('question');
 const _multipleChoice = document.querySelector('.multiple-choice');
 const _score = document.getElementById('score');
 const _totalQuestions = document.getElementById('total-questions');
 const _submitBtn = document.getElementById('submit');
-const _playAgain = document.getElementById('play-again');
 const _result = document.getElementById('result');
 
 let correctAnswer = '', correctScore = 0 , askedCount = 0, totalQuestion = 10;
@@ -41,7 +38,7 @@ function positionAnswer(data){
     let multipleChoice = incorrectAnswer;
     multipleChoice.splice(Math.floor(Math.random() * (incorrectAnswer.length + 1)), 0, correctAnswer);
     
-    _question.innerHTML = `${data.question}`
+    _question.innerHTML = `${data.question}`;
     _multipleChoice.innerHTML = `
         ${multipleChoice.map((option, index) =>`
             <li> ${index + 1}. <span> ${option} </span> </li>
@@ -69,9 +66,9 @@ function submitAnswer(){
         if(chosenAnswer.trim() == htmlDecode(correctAnswer)){
             correctScore++;
             console.log(correctScore);
-            _result.innerHTML = `<p> Correct Answer! </p>`
+            _result.innerHTML = `<p> Correct Answer! </p>`;
         } else {
-            _result.innerHTML = `<p> Incorrect Answer! </p> <p><small><b>Correct Answer: </b> ${correctAnswer}</small></p>`
+            _result.innerHTML = `<p> Incorrect Answer! </p> <p><small><b>Correct Answer: </b> ${correctAnswer}</small></p>`;
         }
         checkCount();
     }
@@ -84,7 +81,6 @@ function htmlDecode(textString){
 
 function checkCount(){
     askedCount++;
-    setCount+1;
     setCount();
     if(askedCount == totalQuestion){
         setTimeout(() =>{
