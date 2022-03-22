@@ -1,13 +1,32 @@
 window.onload = sendApiRequest
-let trivia = ""
-const multipleChoice = document.querySelector('.multiple-choice');
 
-async function sendApiRequest() {
+//getting elements and saving them as 'private' variables by prepending underscore
+const _question = document.getElementById('question');
+const _multipleChoice = document.querySelector('.multiple-choice');
+const _score = document.getElementById('score');
+const _totalQuestions = document.getElementById('total-questions');
+const _submitBtn = document.getElementById('submit');
+const _playAgain = document.getElementById('play-again');
+const _result = document.getElementById('result');
+
+let correctAnswer = ""
+let yourScore = 0
+
+async function sendApiRequest(){
     let apiUrl = 'https://opentdb.com/api.php?amount=1&category=17&type=multiple';
     let response = await fetch(`${apiUrl}`);
-    trivia = await response.json()
-    //inputTrivia(trivia);
+    trivia = await response.json();
     positionAnswer(trivia.results[0]);
+    inputQuestion(trivia);
+}
+
+//event listeners
+function checkClicks(){
+    submitBtn.addEventListener('click', submitAnswer);
+}
+
+function inputQuestion(trivia){
+    document.getElementById("question").innerHTML = trivia.results[0].question;
 }
 
 function positionAnswer(trivia){
@@ -21,7 +40,9 @@ function positionAnswer(trivia){
             <li> ${index + 1}. <span>${option}</span> </li>
         `).join('')}
     `;
-
+    console.log(correctAnswer);
+    
+    checkClicks();
     yourAnswer();
 }
 
@@ -30,12 +51,35 @@ function yourAnswer(){
         option.addEventListener('click', function(){
             if(multipleChoice.querySelector('.selected')){
                 let yourChoice = multipleChoice.querySelector('.selected');
-                yourChoice.classList.remove('.selected');
+                yourChoice.classList.remove('selected');
             }
-            option.classList.add('.selected');
-        });
+            option.classList.add('selected');
+        });      
     });
 }
+
+
+
+function submitAnswer(){
+    submitBtn.disabled = true;
+    if(multipleChoice.querySelector('.selected')){
+        let chosenAnswer = multipleChoice.querySelector('.selected span').textContent;
+        console.log(chosenAnswer);
+        if(chosenAnswer.trim() == htmlDecode(correctAnswer)){
+            yourScore++;
+            response.innerHTML = `<p> Correct! Well done </p>`;
+        } else {
+            response.innerHTML = `<p> Oops incorrect! Correct answer:${correctAnswer} </p>`;
+        }
+    }
+}
+
+function htmlDecode(input){
+    let parser = new DOMParser().parseFromString(input, "text/html")
+    return parser.documentElement.textContent;
+}
+
+
 
 /*
 function inputTrivia(trivia) {
