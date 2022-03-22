@@ -4,28 +4,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- google fonts-->
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     <link rel="stylesheet" href="assets/CSS/style.css" type="text/css">
-    <script src="assets/js/script.js"></script>
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Space Quiz</title>
 </head>
-<body>
-    
-    <div class="quiz-content">
-        <h1 class="quiz-title">Space Quiz</h1>
-        <p class="questions" id="question">This is a question?</p>
-        <ul class="multiple-choice">
-            <li id="answer1">Multiple choice</li>
-            <li id="answer2">Multiple choice</li>
-            <li id="answer3">Multiple choice</li>
-            <li id="answer4">Multiple choice</li>
-        </ul>
-        <div class="answer-button">
-            <button>Submit</button>
+<body class="flex">
+    <div class="wrapper">
+        <div class="quiz-container">
+            <div class="quiz-head">
+                <h1 class="quiz-title">Quiz Time</h1>
+                <div>
+                    <span id="score"></span><span id="total-questions"></span>
+                </div>
+            </div>
+            <div class="quiz-body">
+                <h2 class="quiz-question" id="question"></h2>
+                <ul class="multiple-choice">
+                </ul>
+            </div>
+            <div id="result">
+            </div>
+            <div class="quiz-foot">
+                <button type="button" id="submit">Submit</button>
+                <button type="button" id="play-again"></button>
+            </div>   
         </div>
-        
-    </div>
+    </div>   
+    
+
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
